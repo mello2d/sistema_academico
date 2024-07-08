@@ -32,4 +32,4 @@ def excluirCurso(request, id):
     except:
         pass
 
-    return redirect(request, 'listar_cursos')
+    return redirect('listar_cursos')
