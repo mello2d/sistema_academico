@@ -1,11 +1,11 @@
 from django.urls import path
 from . import views
 
-
 urlpatterns = [
     path('', views.index, name="index"),
-    
-    #professores
+
+    # professores
+
     path('/listar_professor', views.listarProfessor, name='listar_professor'),
     path('/incluir_professor', views.incluirProfessor, name='incluir_professor'),
     path('/alterar_professor', views.alterarProfessor, name='alterar_professor'),
