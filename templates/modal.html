@@ -1,0 +1,48 @@
+<div class="modal" id="mensagem">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Sistema Acadêmico</h5>
+                <button type="button" 
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Fechar"
+                        onclick="fechar()"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja EXCLUIR?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                    class="btn btn-outline-success"
+                    onclick="fechar()">Não</button>
+
+                <button type="button"
+                    class="btn btn-danger"
+                    onclick="excluir()">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let modal = document.getElementById("mensagem");
+    let url = "";
+
+    function abrirTela(caminho){
+        url = caminho;
+        modal.style.display = "block";
+        modal.className = "modal fade show";
+    }
+
+    function fechar(){
+        modal.style.display = "none";
+        modal.className = "modal fade";
+    }
+
+    function excluir(){
+        fechar();
+        window.location= url;
+    }
+
+</script>

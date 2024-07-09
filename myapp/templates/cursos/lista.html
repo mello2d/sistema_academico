@@ -20,7 +20,7 @@
                 <td>{{ c.valor}}</td>
                 <td>
                     <a href="{% url 'alterar_curso' c.id %}" class="btn btn-primary">Alterar</a>
-                    <a href= "{% url 'excluir_curso' c.id %}" class="btn btn-danger">Excluir</a>
+                    <a href= "#" class="btn btn-danger" onclick="abrirTela('{% url 'excluir_curso' c.id %}')">Excluir</a>
                 </td>
             </tr>
 

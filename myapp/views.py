@@ -63,7 +63,7 @@ def incluirProfessor(request):
             form.save()
             return redirect('listar_professor')
     form = ProfessorForm()
-    return render(request, '', {'form': form})
+    return render(request, 'professor/form_professor.html', {'form': form})
 
 
 def alterarProfessor(request, id):
@@ -74,7 +74,7 @@ def alterarProfessor(request, id):
             form.save()
             return redirect('listar_professor')
     form = ProfessorForm(isinstance=professor)
-    return render(request, "", {'form': form})
+    return render(request, "professor/form_professor.html", {'form': form})
 
 
 def excluirProfessor(request, id):
@@ -114,18 +114,20 @@ def excluirCurso(request, id):
 
     return redirect('listar_cursos')
 
+# Listar cursos
 
 def listarCursos(request):
     cursos = Curso.objects.order_by('nome')
     return render(request, 'cursos/lista.html', {'cursos': cursos})
 
+# Incluir curso
 
 def incluirCurso(request):
     if request.method == "POST":
         form = CursoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('incluir_curso')
+            return redirect('listar_cursos')
 
-        form = CursoForm()
-    return render(request, 'curso/form_curso.html', {'form': form})
+    form = CursoForm()
+    return render(request, 'cursos/form_curso.html', {'form': form})
