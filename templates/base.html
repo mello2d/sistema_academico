@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Acadêmico</title>
+    {% load django_bootstrap5 %}
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'estilo.css' %}">
+    {% bootstrap_css %}
+</head>
+
+<body>
+
+    {% include 'menu.html' %}
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% include 'modal.html' %}
+
+</body>
+
+    {% bootstrap_javascript %}
+
+</html>
