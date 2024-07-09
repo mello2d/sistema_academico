@@ -2,6 +2,12 @@ from django.urls import path
 from . import views
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+from django.urls import path
+from . import views
+
+>>>>>>> 4cc940341912d4dde67eea9ca79eda86f139860d
 =======
 from django.urls import path
 from . import views
@@ -19,6 +25,7 @@ urlpatterns = [
 
     # Cursos
 <<<<<<< HEAD
+<<<<<<< HEAD
     path('/alterar_curso/<int:id>', views.alterarCurso, name='alterar_curso'),
     path('/excluir_curso/<int:id>', views.excluirCurso, name='excluir_curso'),
 
@@ -29,9 +36,14 @@ urlpatterns = [
         name='incluir_curso'),
 
 =======
+=======
+>>>>>>> 4cc940341912d4dde67eea9ca79eda86f139860d
 
     path('/alterar_curso/<int:id>', views.alterarCurso, name='alterar_curso'),
     path('/excluir_curso/<int:id>', views.excluirCurso, name='excluir_curso'),
 
+<<<<<<< HEAD
+>>>>>>> 4cc940341912d4dde67eea9ca79eda86f139860d
+=======
 >>>>>>> 4cc940341912d4dde67eea9ca79eda86f139860d
 ]
