@@ -43,7 +43,7 @@ def excluirAluno(request, id):
 
 
 def index(request):
-    return render(request, "lista.html")
+    return render(request, "index.html")
 
 
 def listarProfessor(request):
