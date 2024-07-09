@@ -6,4 +6,6 @@ from myapp.models import Curso
 # Register your models here.
 admin.site.register(Curso)
 
+# Register your models here.
+
 admin.site.register(Professor)

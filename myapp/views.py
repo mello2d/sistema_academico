@@ -1,9 +1,9 @@
-from django.shortcuts import render,redirect
 from myapp.forms import CursoForm, ProfessorForm
 from myapp.models import Curso, Professor
+from django.shortcuts import render, redirect
 
 # Create your views here.
-
+#
 
 
 def index(request):
