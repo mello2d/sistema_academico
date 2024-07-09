@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render,redirect
 from myapp.forms import CursoForm
 from myapp.models import Curso
 
@@ -17,3 +17,4 @@ def incluirCurso(request):
 
         form = CursoForm()
     return render(request, 'curso/form_curso.html', {'form': form})
+
