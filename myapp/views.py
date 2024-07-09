@@ -7,6 +7,11 @@ from myapp.models import Curso, Professor
 
 # Create your views here.
 
+# Index
+def index(request):
+    return render(request, "index.html")
+
+# Alunos
 
 def listarAluno(request):
 
@@ -43,13 +48,7 @@ def excluirAluno(request, id):
         pass
     return redirect('listar_aluno')
 
-# Create your views here.
-#
-
-
-def index(request):
-    return render(request, "index.html")
-
+#Professores
 
 def listarProfessor(request):
     professor = Professor.objects.order_by('nome')
@@ -73,7 +72,7 @@ def alterarProfessor(request, id):
         if form.is_valid():
             form.save()
             return redirect('listar_professor')
-    form = ProfessorForm(isinstance=professor)
+    form = ProfessorForm(instance=professor)
     return render(request, "professor/form_professor.html", {'form': form})
 
 
@@ -84,6 +83,25 @@ def excluirProfessor(request, id):
     except:
         pass
     return redirect("listar_professor")
+
+# Listar cursos
+
+def listarCursos(request):
+    cursos = Curso.objects.order_by('nome')
+    return render(request, 'cursos/lista.html', {'cursos': cursos})
+
+# Incluir curso
+
+def incluirCurso(request):
+    if request.method == "POST":
+        form = CursoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_cursos')
+
+    form = CursoForm()
+    return render(request, 'cursos/form_curso.html', {'form': form})
+
 
 # alterar Curso
 
@@ -113,21 +131,3 @@ def excluirCurso(request, id):
         pass
 
     return redirect('listar_cursos')
-
-# Listar cursos
-
-def listarCursos(request):
-    cursos = Curso.objects.order_by('nome')
-    return render(request, 'cursos/lista.html', {'cursos': cursos})
-
-# Incluir curso
-
-def incluirCurso(request):
-    if request.method == "POST":
-        form = CursoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('listar_cursos')
-
-    form = CursoForm()
-    return render(request, 'cursos/form_curso.html', {'form': form})
