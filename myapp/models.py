@@ -1,9 +1,12 @@
 from django.db import models
 
 # Create your models here.
-
-# Curso
-
+class Professor(models.Model):
+    nome = models.CharField(max_length=100)
+    email = models.CharField(max_length=20)
+    telefone = models.CharField(max_length=20)  
+    def __str__(self):
+        return f'{self.nome} - {self.email} - {self.telefone}'
 
 class Curso(models.Model):
     nome = models.CharField(max_length=100, verbose_name="Nome do Curso")
