@@ -6,11 +6,14 @@ from myapp.forms import CursoForm, ProfessorForm
 from myapp.models import Curso, Professor
 
 # Create your views here.
+
+
 def listarAluno(request):
 
     aluno = Aluno.objects.order_by('nome')
-    return render(request, 'aluno/lista.html',{'aluno': aluno}) 
-    
+    return render(request, 'aluno/lista.html', {'aluno': aluno})
+
+
 def incluirAluno(request):
     if request.method == 'POST':
         form = AlunoForm(request.POST)
@@ -20,22 +23,24 @@ def incluirAluno(request):
     form = AlunoForm()
     return render(request, 'aluno/form_aluno.html', {'form': form})
 
+
 def alterarAluno(request, id):
-     aluno = Aluno.objects.get(id = id) #get - buscando o cliente por id 
-     if request.method ==  'POST':
-        form = AlunoForm(request.POST, instance = aluno)
+    aluno = Aluno.objects.get(id=id)  # get - buscando o cliente por id
+    if request.method == 'POST':
+        form = AlunoForm(request.POST, instance=aluno)
         if form.is_valid():
             form.save()
             return redirect('listar_aluno')
-     form = AlunoForm(instance = aluno)
-     return render(request, 'aluno/form_aluno.html', {'form': form})
+    form = AlunoForm(instance=aluno)
+    return render(request, 'aluno/form_aluno.html', {'form': form})
+
 
 def excluirAluno(request, id):
-    veiculo = Aluno.objects.get (id = id)
+    veiculo = Aluno.objects.get(id=id)
     try:
-     veiculo.delete()
+        veiculo.delete()
     except:
-      pass    
+        pass
     return redirect('listar_aluno')
 
 # Create your views here.
@@ -47,8 +52,8 @@ def index(request):
 
 
 def listarProfessor(request):
-    professor = Professor.objects.order.by('nome')
-    return render(request, '', {'professor': professor})
+    professor = Professor.objects.order_by('nome')
+    return render(request, 'professor/lista.html', {'professor': professor})
 
 
 def incluirProfessor(request):
@@ -109,9 +114,11 @@ def excluirCurso(request, id):
 
     return redirect('listar_cursos')
 
+
 def listarCursos(request):
-    curso = Curso.objects.order_by('nome')
-    return render(request, 'cursos/lista.html', {'cursos': curso})
+    cursos = Curso.objects.order_by('nome')
+    return render(request, 'cursos/lista.html', {'cursos': cursos})
+
 
 def incluirCurso(request):
     if request.method == "POST":
@@ -122,4 +129,3 @@ def incluirCurso(request):
 
         form = CursoForm()
     return render(request, 'curso/form_curso.html', {'form': form})
-

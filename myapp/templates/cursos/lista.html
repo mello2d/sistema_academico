@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Cursos</h2>
+    <a href="{% url 'incluir_curso' %}" class="btn btn-primary">Incluir novo curso</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Cursos</td>
+                <td>Valor</td>
+                <td>Ações</td>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for c in cursos %}
+
+            <tr>
+                <td>{{ c.nome}}</td>
+                <td>{{ c.valor}}</td>
+                <td>
+                    <a href="{% url 'alterar_curso' c.id %}" class="btn btn-primary">Alterar</a>
+                    <a href= "{% url 'excluir_curso' c.id %}" class="btn btn-danger">Excluir</a>
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
