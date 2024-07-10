@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+   <h2>Turmas</h2>
+   <a href="{% url 'criar_turma' %}" class="btn btn-primary">Incluir Novo Turma</a>
+   <table class='table table-striped'>
+      <thead>
+      <tr>
+         <td>Curso</td>
+         <td>Data de início</td>
+         <td>Data de termino</td>  
+         <td>Ações</td>
+      </tr>
+   </thead>
+   <tbody>
+      {% for t in turma %}
+      <tr>
+         <td>{{t.curso}}</td>
+         <td>{{t.data_inicio}}</td>
+         <td>{{t.data_termino}}</td>
+         <td>
+            
+            <a href ="{% url 'editar_turma' t.id %}" class="btn btn-primary">Alterar</a>
+            <a href= "#" class ="btn btn-danger" onclick="abrirTela('{% url 'excluir_turma' t.id %}')">Excluir</a>
+            
+         </td>        
+      </tr>
+      {% endfor %}
+   </tbody>
+   </table>
+{% endblock %}

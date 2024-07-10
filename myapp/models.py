@@ -25,3 +25,14 @@ class Curso(models.Model):
 
     class Meta:
         ordering = ["nome"]
+
+
+class Turma(models.Model):
+    curso = models.ForeignKey(Curso, on_delete=models.DO_NOTHING)
+    data_inicio = models.DateField()
+    data_termino = models.DateField()
+
+    def __str__(self):
+        return f'Turma de {self.curso}'
+
+

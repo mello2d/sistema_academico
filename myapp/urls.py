@@ -23,4 +23,12 @@ urlpatterns = [
     path('/incluir_curso', views.incluirCurso, name='incluir_curso'),
     path('/alterar_curso/<int:id>', views.alterarCurso, name='alterar_curso'),
     path('/excluir_curso/<int:id>', views.excluirCurso, name='excluir_curso'),
+
+    # Turmas
+    path('/listar_turmas', views.listarTurmas, name='listar_turmas'),
+    path('/criar_turma', views.incluirTurma, name='criar_turma'),
+   # path('/detalhes_turma/<int:id>', views.detalhesTurma, name='detalhes_turma'),
+    path('/editar_turma/<int:id>', views.alterarTurma, name='editar_turma'),
+    path('/excluir_turma/<int:id>', views.excluirTurma, name='excluir_turma'),
+
 ]

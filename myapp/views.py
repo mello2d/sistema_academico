@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 
 from myapp.forms import AlunoForm
-from myapp.models import Aluno
-from myapp.forms import CursoForm, ProfessorForm
+from myapp.models import Aluno, Turma
+from myapp.forms import CursoForm, ProfessorForm, TurmaForm
 from myapp.models import Curso, Professor
 
 # Create your views here.
@@ -137,3 +137,41 @@ def excluirCurso(request, id):
         pass
 
     return redirect('listar_cursos')
+
+def listarTurmas(request):
+    turma = Turma.objects.order_by('curso')
+
+    return render(request, 'turma/lista.html', {'turma': turma})
+
+def incluirTurma(request):
+    if request.method == "POST":
+        form = TurmaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_turmas')
+
+    form = TurmaForm()
+    return render(request, 'turma/form_turma.html', {'form': form})
+
+def alterarTurma(request, id):
+    turma = Turma.objects.get(id=id)
+
+    if request.method == "POST":
+        form = TurmaForm(request.POST, instance=turma)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_turmas')
+
+    form = TurmaForm(instance=turma)
+    return render(request, 'turma/form_turma', {'form': form})
+
+def excluirTurma(request, id):
+    turma = Turma.objects.get(id=id)
+
+    try:
+        turma.delete()
+
+    except:
+        pass
+
+    return redirect('listar_turmas')

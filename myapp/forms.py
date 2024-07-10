@@ -1,6 +1,6 @@
 from django.forms import ModelForm 
 from django import forms
-from .models import Aluno, Professor, Curso
+from .models import Aluno, Professor, Curso, Turma
 
 class AlunoForm(ModelForm):
    class Meta:
@@ -26,3 +26,24 @@ class CursoForm(ModelForm):
     class Meta:
         model = Curso
         fields = '__all__'
+
+class TurmaForm(forms.ModelForm):
+    class Meta:
+        model = Turma
+        fields = '__all__'
+    data_inicio = forms.DateTimeField(
+     label = "Data de início",
+     widget=forms.DateTimeInput(
+        format='%Y-%m-%d %H:%M:%S',
+        attrs={'type': 'date'}
+     ),
+     input_formats=('%Y-%m-%d %H:%M:%S')
+   )
+    data_termino = forms.DateTimeField(
+     label = "Data de Termino",
+     widget=forms.DateTimeInput(
+        format='%Y-%m-%d %H:%M:%S',
+        attrs={'type': 'date'}
+     ),
+     input_formats=('%Y-%m-%d %H:%M:%S')
+   )  
