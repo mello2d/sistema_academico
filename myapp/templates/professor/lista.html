@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-   <h2>Professor</h2>
-   <a href="{% url 'incluir_professor' %}" class="btn btn-info btn-lg">Incluir Novo Professor</a>
+   <h2>Professores</h2>
+   <a href="{% url 'incluir_professor' %}" class="btn btn-primary">Incluir Novo Professor</a>
    <table class='table table-striped'>
       <thead>
       <tr>
@@ -12,7 +12,7 @@
       </tr>
    </thead>
    <tbody>
-      {% for p in Professor %}
+      {% for p in professor %}
       <tr>
          <td>{{p.nome}}</td>
          <td>{{p.telefone}}</td>

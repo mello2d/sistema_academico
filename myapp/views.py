@@ -6,11 +6,19 @@ from myapp.forms import CursoForm, ProfessorForm
 from myapp.models import Curso, Professor
 
 # Create your views here.
+
+# Index
+def index(request):
+    return render(request, "index.html")
+
+# Alunos
+
 def listarAluno(request):
 
     aluno = Aluno.objects.order_by('nome')
-    return render(request, 'aluno/lista.html',{'aluno': aluno}) 
-    
+    return render(request, 'aluno/lista.html', {'aluno': aluno})
+
+
 def incluirAluno(request):
     if request.method == 'POST':
         form = AlunoForm(request.POST)
@@ -20,35 +28,31 @@ def incluirAluno(request):
     form = AlunoForm()
     return render(request, 'aluno/form_aluno.html', {'form': form})
 
+
 def alterarAluno(request, id):
-     aluno = Aluno.objects.get(id = id) #get - buscando o cliente por id 
-     if request.method ==  'POST':
-        form = AlunoForm(request.POST, instance = aluno)
+    aluno = Aluno.objects.get(id=id)  # get - buscando o cliente por id
+    if request.method == 'POST':
+        form = AlunoForm(request.POST, instance=aluno)
         if form.is_valid():
             form.save()
             return redirect('listar_aluno')
-     form = AlunoForm(instance = aluno)
-     return render(request, 'aluno/form_aluno.html', {'form': form})
+    form = AlunoForm(instance=aluno)
+    return render(request, 'aluno/form_aluno.html', {'form': form})
+
 
 def excluirAluno(request, id):
-    veiculo = Aluno.objects.get (id = id)
+    veiculo = Aluno.objects.get(id=id)
     try:
-     veiculo.delete()
+        veiculo.delete()
     except:
-      pass    
+        pass
     return redirect('listar_aluno')
 
-# Create your views here.
-#
-
-
-def index(request):
-    return render(request, "lista.html")
-
+#Professores
 
 def listarProfessor(request):
-    professor = Professor.objects.order.by('nome')
-    return render(request, '', {'professor': professor})
+    professor = Professor.objects.order_by('nome')
+    return render(request, 'professor/lista.html', {'professor': professor})
 
 
 def incluirProfessor(request):
@@ -58,7 +62,7 @@ def incluirProfessor(request):
             form.save()
             return redirect('listar_professor')
     form = ProfessorForm()
-    return render(request, '', {'form': form})
+    return render(request, 'professor/form_professor.html', {'form': form})
 
 
 def alterarProfessor(request, id):
@@ -68,8 +72,8 @@ def alterarProfessor(request, id):
         if form.is_valid():
             form.save()
             return redirect('listar_professor')
-    form = ProfessorForm(isinstance=professor)
-    return render(request, "", {'form': form})
+    form = ProfessorForm(instance=professor)
+    return render(request, "professor/form_professor.html", {'form': form})
 
 
 def excluirProfessor(request, id):
@@ -79,6 +83,25 @@ def excluirProfessor(request, id):
     except:
         pass
     return redirect("listar_professor")
+
+# Listar cursos
+
+def listarCursos(request):
+    cursos = Curso.objects.order_by('nome')
+    return render(request, 'cursos/lista.html', {'cursos': cursos})
+
+# Incluir curso
+
+def incluirCurso(request):
+    if request.method == "POST":
+        form = CursoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_cursos')
+
+    form = CursoForm()
+    return render(request, 'cursos/form_curso.html', {'form': form})
+
 
 # alterar Curso
 
@@ -108,18 +131,3 @@ def excluirCurso(request, id):
         pass
 
     return redirect('listar_cursos')
-
-def listarCursos(request):
-    curso = Curso.objects.order_by('nome')
-    return render(request, 'cursos/lista.html', {'cursos': curso})
-
-def incluirCurso(request):
-    if request.method == "POST":
-        form = CursoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('incluir_curso')
-
-        form = CursoForm()
-    return render(request, 'curso/form_curso.html', {'form': form})
-
