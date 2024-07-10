@@ -8,10 +8,13 @@ from myapp.models import Curso, Professor
 # Create your views here.
 
 # Index
+
+
 def index(request):
     return render(request, "index.html")
 
 # Alunos
+
 
 def listarAluno(request):
 
@@ -48,7 +51,8 @@ def excluirAluno(request, id):
         pass
     return redirect('listar_aluno')
 
-#Professores
+# Professores
+
 
 def listarProfessor(request):
     professor = Professor.objects.order_by('nome')
@@ -68,7 +72,7 @@ def incluirProfessor(request):
 def alterarProfessor(request, id):
     professor = Professor.objects.get(id=id)
     if request.method == "POST":
-        form = ProfessorForm(request.POST, isinstance=professor)
+        form = ProfessorForm(request.POST, instance=professor)
         if form.is_valid():
             form.save()
             return redirect('listar_professor')
@@ -77,7 +81,7 @@ def alterarProfessor(request, id):
 
 
 def excluirProfessor(request, id):
-    professor = Professor.object.get(id=id)
+    professor = Professor.objects.get(id=id)
     try:
         professor.delete()
     except:
@@ -86,11 +90,13 @@ def excluirProfessor(request, id):
 
 # Listar cursos
 
+
 def listarCursos(request):
     cursos = Curso.objects.order_by('nome')
     return render(request, 'cursos/lista.html', {'cursos': cursos})
 
 # Incluir curso
+
 
 def incluirCurso(request):
     if request.method == "POST":
