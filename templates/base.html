@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sistema Acadêmico</title>
     {% load django_bootstrap5 %}
     {% load static %}
     <link rel = 'stylesheet' href="{% static 'estilo.css' %}">
@@ -13,7 +13,10 @@
 </head>
 <body>
     {% include "menu.html" %}
+    
     {% include "modal.html" %}
+    {% include "mensagens.html" %}
+
     <div class = 'container'>
         {% block content %}
         {% endblock %}

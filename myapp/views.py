@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
-
-from myapp.forms import AlunoForm
-from myapp.models import Aluno, Turma
-from myapp.forms import CursoForm, ProfessorForm, TurmaForm
-from myapp.models import Curso, Professor
+from myapp.models import Aluno, Curso, Professor,Turma
+from myapp.forms import AlunoForm, CursoForm, ProfessorForm, TurmaForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -134,7 +132,7 @@ def excluirCurso(request, id):
         curso.delete()
 
     except:
-        pass
+        messages.error(request, "Não foi possível excluir devido a associações.")
 
     return redirect('listar_cursos')
 
